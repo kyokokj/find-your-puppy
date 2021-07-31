@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_31_064553) do
+ActiveRecord::Schema.define(version: 2021_07_31_070721) do
 
   create_table "breeders", force: :cascade do |t|
     t.string "name", null: false
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2021_07_31_064553) do
     t.integer "price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "available", default: false, null: false
     t.index ["litter_id"], name: "index_puppies_on_litter_id"
   end
 
