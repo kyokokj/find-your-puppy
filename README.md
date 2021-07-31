@@ -31,15 +31,17 @@ Things you may want to cover:
 - build server sides
 - create migrations and models
   > $ rails g migration CreateBreeders
-  > $ rails g migration CreateDogs
-  > $ rails g migration CreateLitters
-  > $ rails g migration CreatePuppies
-- Added a new column to Puppies table
-  > $ rails g migration AddAvailableToPuppies
-  > $ rails g model breeder
-  > $ rails g model dog
-  > $ rails g model litter
-  > $ rails g model puppy
--
+- create model
+  > $ rails g model xxx
+- create controller
+  > $ rails g controller xxx
+- build client sides with React
+  > $ npx create-react-app frontend
+  > You can start client side with this command
+  > $ npm start
+  > Would you like to run the app on another port instead? › (Y/n) y
+- install react router dom
+
+  > $ npm install react-router-dom
 
 -
