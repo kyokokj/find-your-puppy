@@ -12,17 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2021_07_31_073858) do
 
-  create_table "Puppies", force: :cascade do |t|
-    t.integer "litter_id", null: false
-    t.string "name", null: false
-    t.integer "price", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.boolean "available", default: false, null: false
-    t.integer "sex", null: false
-    t.index ["litter_id"], name: "index_puppies_on_litter_id"
-  end
-
   create_table "breeders", force: :cascade do |t|
     t.string "name", null: false
     t.boolean "qualified", default: false, null: false
@@ -50,7 +39,18 @@ ActiveRecord::Schema.define(version: 2021_07_31_073858) do
     t.index ["dog_id"], name: "index_litters_on_dog_id"
   end
 
-  add_foreign_key "Puppies", "litters"
+  create_table "puppies", force: :cascade do |t|
+    t.integer "litter_id", null: false
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "available", default: false, null: false
+    t.integer "sex", null: false
+    t.index ["litter_id"], name: "index_puppies_on_litter_id"
+  end
+
   add_foreign_key "dogs", "breeders"
   add_foreign_key "litters", "dogs"
+  add_foreign_key "puppies", "litters"
 end
