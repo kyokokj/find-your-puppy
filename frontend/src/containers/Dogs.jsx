@@ -7,6 +7,8 @@ import {
   dogsActionTypes,
   dogsReducer,
 } from "../reducers/dogs";
+// components
+import Skeleton from "@material-ui/lab/Skeleton";
 // apis
 import { fetchDogs } from "../apis/dogs";
 // images
@@ -67,12 +69,20 @@ export const Dogs = ({ match }) => {
         </Link>
       </HeaderWrapper>
       <DogsList>
-        {dogsState.dogsList.map((item, index) => (
-          <DogsContentWrapper>
-            <DogsImageNode src={DogImage} />
-            <p>{item.name}</p>
-          </DogsContentWrapper>
-        ))}
+        {dogsState.fetchState === REQUEST_STATE.LOADING ? (
+          <Fragment>
+            <Skeleton variant="rect" width={450} height={300} />
+            <Skeleton variant="rect" width={450} height={300} />
+            <Skeleton variant="rect" width={450} height={300} />
+          </Fragment>
+        ) : (
+          dogsState.dogsList.map((item, index) => (
+            <DogsContentWrapper>
+              <DogsImageNode src={DogImage} />
+              <p>{item.name}</p>
+            </DogsContentWrapper>
+          ))
+        )}
       </DogsList>
     </Fragment>
   );

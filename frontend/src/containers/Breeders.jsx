@@ -1,6 +1,8 @@
 import React, { Fragment, useReducer, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+// components
+import Skeleton from "@material-ui/lab/Skeleton";
 // apis
 import { fetchBreeders } from "../apis/breeders";
 // reducers
@@ -13,6 +15,8 @@ import {
 import MainLogo from "../images/logo.png";
 import MainCoverImage from "../images/main-cover-image.png";
 import BreederImage from "../images/breeder-image.jpg";
+// constants
+import { REQUEST_STATE } from "../constants/constants";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -81,20 +85,28 @@ export const Breeders = () => {
         <MainCover src={MainCoverImage} alt="main cover" />
       </MainCoverImageWrapper>
       <BreedersContentsList>
-        {state.breedersList.map((item, index) => (
-          <Link
-            to={`/breeders/${item.id}/dogs`}
-            key={index}
-            style={{ textDecoration: "none" }}
-          >
-            <BreedersContentWrapper>
-              <BreedersImageNode src={BreederImage} />
-              <MainText>{item.name}</MainText>
-              <SubText>{`${item.experience_year}years experience`}</SubText>
-              <SubText>{`breed type is ${item.breed_type}`}</SubText>
-            </BreedersContentWrapper>
-          </Link>
-        ))}
+        {state.fetchState === REQUEST_STATE.LOADING ? (
+          <Fragment>
+            <Skeleton variant="rect" width={450} height={300} />
+            <Skeleton variant="rect" width={450} height={300} />
+            <Skeleton variant="rect" width={450} height={300} />
+          </Fragment>
+        ) : (
+          state.breedersList.map((item, index) => (
+            <Link
+              to={`/breeders/${item.id}/dogs`}
+              key={index}
+              style={{ textDecoration: "none" }}
+            >
+              <BreedersContentWrapper>
+                <BreedersImageNode src={BreederImage} />
+                <MainText>{item.name}</MainText>
+                <SubText>{`${item.experience_year}years experience`}</SubText>
+                <SubText>{`breed type is ${item.breed_type}`}</SubText>
+              </BreedersContentWrapper>
+            </Link>
+          ))
+        )}
       </BreedersContentsList>
     </Fragment>
   );
