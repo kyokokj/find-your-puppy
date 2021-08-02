@@ -1,6 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
+
+// apis
+import { fetchDogs } from "../apis/dogs";
 
 export const Dogs = ({ match }) => {
+  useEffect(() => {
+    fetchDogs(match.params.breedersId).then((data) => console.log(data));
+  }, []);
   return (
     <Fragment>
       index Dog
