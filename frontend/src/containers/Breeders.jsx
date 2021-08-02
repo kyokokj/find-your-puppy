@@ -17,16 +17,16 @@ import MainCoverImage from "../images/main-cover-image.png";
 import BreederImage from "../images/breeder-image.jpg";
 // constants
 import { REQUEST_STATE } from "../constants/constants";
-
-const HeaderWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  padding: 8px 32px;
-`;
-
-const MainLogoImage = styled.img`
-  height: 40px;
-`;
+import {
+  MainLogoImage,
+  HeaderWrapper,
+  MainList,
+  ItemWrapper,
+  MainImageNode,
+  DetailWrapper,
+  MainText,
+  SubText,
+} from "../components/StyledText";
 
 const MainCoverImageWrapper = styled.div`
   text-align: center;
@@ -34,32 +34,6 @@ const MainCoverImageWrapper = styled.div`
 
 const MainCover = styled.img`
   width: 100%;
-`;
-
-const BreedersContentsList = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 150px;
-`;
-
-const BreedersContentWrapper = styled.div`
-  width: 130px;
-  height: 300px;
-  padding: 48px;
-`;
-
-const BreedersImageNode = styled.img`
-  width: 100%;
-`;
-
-const MainText = styled.p`
-  color: black;
-  font-size: 18px;
-`;
-
-const SubText = styled.p`
-  color: black;
-  font-size: 12px;
 `;
 
 export const Breeders = () => {
@@ -84,7 +58,7 @@ export const Breeders = () => {
       <MainCoverImageWrapper>
         <MainCover src={MainCoverImage} alt="main cover" />
       </MainCoverImageWrapper>
-      <BreedersContentsList>
+      <MainList>
         {state.fetchState === REQUEST_STATE.LOADING ? (
           <Fragment>
             <Skeleton variant="rect" width={450} height={300} />
@@ -98,16 +72,18 @@ export const Breeders = () => {
               key={index}
               style={{ textDecoration: "none" }}
             >
-              <BreedersContentWrapper>
-                <BreedersImageNode src={BreederImage} />
-                <MainText>{item.name}</MainText>
-                <SubText>{`${item.experience_year}years experience`}</SubText>
-                <SubText>{`breed type is ${item.breed_type}`}</SubText>
-              </BreedersContentWrapper>
+              <ItemWrapper>
+                <MainImageNode src={BreederImage} />
+                <DetailWrapper>
+                  <MainText>{item.name}</MainText>
+                  <SubText>{`${item.experience_year}years experience`}</SubText>
+                  <SubText>{`breed type is ${item.breed_type}`}</SubText>
+                </DetailWrapper>
+              </ItemWrapper>
             </Link>
           ))
         )}
-      </BreedersContentsList>
+      </MainList>
     </Fragment>
   );
 };

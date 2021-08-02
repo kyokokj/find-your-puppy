@@ -1,5 +1,5 @@
 export const COLORS = {
-  MAIN: "#02A457",
+  MAIN: "#0f0f0f",
   BORDER: "#e2e2e2",
   SUB_TEXT: "#545454",
   SUB_BUTTON: "#eeeeee",

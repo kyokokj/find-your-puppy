@@ -16,37 +16,16 @@ import MainLogo from "../images/logo.png";
 import DogImage from "../images/dog-image.jpg";
 // constants
 import { REQUEST_STATE } from "../constants/constants";
-
-const HeaderWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  padding: 8px 32px;
-`;
-
-const DogsList = styled.div`
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin-bottom: 50px;
-`;
-
-const DogsContentWrapper = styled.div`
-  width: 130px;
-  height: 300px;
-  padding: 48px;
-`;
-
-const DogsImageNode = styled.img`
-  width: 100%;
-`;
-
-const ItemWrapper = styled.div`
-  margin: 16px;
-`;
-
-const MainLogoImage = styled.img`
-  height: 40px;
-`;
+import {
+  MainLogoImage,
+  HeaderWrapper,
+  MainList,
+  ItemWrapper,
+  MainImageNode,
+  DetailWrapper,
+  MainText,
+  SubText,
+} from "../components/StyledText";
 
 export const Dogs = ({ match }) => {
   const [dogsState, dispatch] = useReducer(dogsReducer, dogsInitialState);
@@ -67,8 +46,9 @@ export const Dogs = ({ match }) => {
         <Link to="/breeders">
           <MainLogoImage src={MainLogo} alt="main logo" />
         </Link>
+        <h1>{dogsState.Dogs}</h1>
       </HeaderWrapper>
-      <DogsList>
+      <MainList>
         {dogsState.fetchState === REQUEST_STATE.LOADING ? (
           <Fragment>
             <Skeleton variant="rect" width={450} height={300} />
@@ -77,13 +57,17 @@ export const Dogs = ({ match }) => {
           </Fragment>
         ) : (
           dogsState.dogsList.map((item, index) => (
-            <DogsContentWrapper>
-              <DogsImageNode src={DogImage} />
-              <p>{item.name}</p>
-            </DogsContentWrapper>
+            <ItemWrapper>
+              <MainImageNode src={DogImage} />
+              <DetailWrapper>
+                <MainText>{item.name}</MainText>
+                <SubText>{`sex: ${item.sex}`}</SubText>
+                <SubText>{`Birthday: ${item.birthday}`}</SubText>
+              </DetailWrapper>
+            </ItemWrapper>
           ))
         )}
-      </DogsList>
+      </MainList>
     </Fragment>
   );
 };

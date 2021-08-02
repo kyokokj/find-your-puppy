@@ -16,6 +16,8 @@
   - Ruby v2.5.7
   - Ruby on Rails v6.1.4
   - db
+  - installed gem 'rack-cors' to admit
+  - CSS in JS using Material UI & styled-components
 
 - directry structures in client side
   - ./frontend
