@@ -3,6 +3,7 @@ import { REQUEST_STATE } from "../constants/constants";
 export const initialState = {
   fetchState: REQUEST_STATE.INITIAL,
   dogsList: [],
+  puppiesList: [],
 };
 
 export const dogsActionTypes = {
@@ -21,6 +22,7 @@ export const dogsReducer = (state, action) => {
       return {
         fetchState: REQUEST_STATE.OK,
         dogsList: action.payload.dogs,
+        puppiesList: action.payload.puppies,
       };
     default:
       throw new Error();

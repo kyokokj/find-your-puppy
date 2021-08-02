@@ -14,6 +14,7 @@ import { fetchDogs } from "../apis/dogs";
 // images
 import MainLogo from "../images/logo.png";
 import DogImage from "../images/dog-image.jpg";
+import PuppyImage from "../images/puppy-image.jpg";
 // constants
 import { REQUEST_STATE } from "../constants/constants";
 import {
@@ -36,10 +37,12 @@ export const Dogs = ({ match }) => {
         type: dogsActionTypes.FETCH_SUCCESS,
         payload: {
           dogs: data.dogs,
+          puppies: data.puppies,
         },
       });
     });
   }, []);
+  debugger;
   return (
     <Fragment>
       <HeaderWrapper>
@@ -63,6 +66,28 @@ export const Dogs = ({ match }) => {
                 <MainText>{item.name}</MainText>
                 <SubText>{`sex: ${item.sex}`}</SubText>
                 <SubText>{`Birthday: ${item.birthday}`}</SubText>
+              </DetailWrapper>
+            </ItemWrapper>
+          ))
+        )}
+      </MainList>
+      <hr />
+      <MainList>
+        {dogsState.fetchState === REQUEST_STATE.LOADING ? (
+          <Fragment>
+            <Skeleton variant="rect" width={450} height={300} />
+            <Skeleton variant="rect" width={450} height={300} />
+            <Skeleton variant="rect" width={450} height={300} />
+          </Fragment>
+        ) : (
+          dogsState.puppiesList.map((item, index) => (
+            <ItemWrapper>
+              <MainImageNode src={PuppyImage} />
+              <DetailWrapper>
+                <MainText>{item.name}</MainText>
+                <SubText>{`sex: ${item.sex}`}</SubText>
+                <SubText>{`price: ${item.price}`}</SubText>
+                <SubText>{`available: ${item.available}`}</SubText>
               </DetailWrapper>
             </ItemWrapper>
           ))

@@ -21,7 +21,7 @@ export const MainList = styled.div`
 export const ItemWrapper = styled.div`
   width: 400px;
   height: 230px;
-  margin: 5px;
+  margin: px;
   padding: 3px;
   display: flex;
   background: ${COLORS.BORDER};
