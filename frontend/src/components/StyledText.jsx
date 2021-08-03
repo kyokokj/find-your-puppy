@@ -21,8 +21,18 @@ export const MainList = styled.div`
 export const ItemWrapper = styled.div`
   width: 400px;
   height: 230px;
-  margin: px;
-  padding: 3px;
+  margin: 3px;
+  padding: 10px;
+  display: flex;
+  background: ${COLORS.BORDER};
+  border-radius: 8px;
+`;
+
+export const ItemSubWrapper = styled.div`
+  width: 200px;
+  height: 120px;
+  margin: 3px;
+  padding: 10px;
   display: flex;
   background: ${COLORS.BORDER};
   border-radius: 8px;
@@ -42,9 +52,11 @@ export const DetailWrapper = styled.div`
 export const MainText = styled.p`
   color: ${COLORS.MAIN};
   font-size: ${FONT_SIZE.BODY1};
+  text-align: center;
 `;
 
 export const SubText = styled.p`
   color: ${COLORS.SUB_TEXT};
   font-size: ${FONT_SIZE.BODY2};
+  text-align: center;
 `;

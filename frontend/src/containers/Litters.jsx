@@ -1,19 +1,19 @@
-import React, { Fragment, useReducer, useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { Fragment, useReducer, useEffect } from "react";
 import { Link } from "react-router-dom";
 // reducers
 import {
-  initialState as dogsInitialState,
-  dogsActionTypes,
-  dogsReducer,
-} from "../reducers/dogs";
+  initialState as littersInitialState,
+  littersActionTypes,
+  littersReducer,
+} from "../reducers/litters";
 // components
 import Skeleton from "@material-ui/lab/Skeleton";
 // apis
-import { fetchDogs } from "../apis/dogs";
+import { fetchDogs } from "../apis/litters";
 // images
 import MainLogo from "../images/logo.png";
 import DogImage from "../images/dog-image.jpg";
+import LitterImage from "../images/litter-image.jpg";
 import PuppyImage from "../images/puppy-image.jpg";
 // constants
 import { REQUEST_STATE } from "../constants/constants";
@@ -22,54 +22,48 @@ import {
   HeaderWrapper,
   MainList,
   ItemWrapper,
-  ItemSubWrapper,
+  ItemSubWrapper
   MainImageNode,
-  DetailWrapper,
+  DetailWrapper
   MainText,
   SubText,
 } from "../components/StyledText";
 
-export const Dogs = ({ match }) => {
-  const [dogsState, dispatch] = useReducer(dogsReducer, dogsInitialState);
-  const initialState = {
-    isOpenOrderDialog: false,
-    selectedPuppy: null,
-  };
+export const Litters = ({ match }) => {
+  const [littersState, dispatch] = useReducer(littersReducer, littersInitialState);
   useEffect(() => {
-    dispatch({ type: dogsActionTypes.FETCHING });
-    fetchDogs(match.params.breedersId).then((data) => {
+    dispatch({ type: littersActionTypes.FETCHING });
+    fetchLitters(match.params.dogsId).then((data) => {
       dispatch({
-        type: dogsActionTypes.FETCH_SUCCESS,
+        type: littersActionTypes.FETCH_SUCCESS,
         payload: {
-          dogs: data.dogs,
+          dog: data.dog,
+          litters: data.litters,
           puppies: data.puppies,
         },
       });
     });
   }, []);
-  debugger;
   return (
     <Fragment>
       <HeaderWrapper>
         <Link to="/breeders">
           <MainLogoImage src={MainLogo} alt="main logo" />
         </Link>
-        <h1>{dogsState.Dogs}</h1>
+        <h1>{littersState.Litters}</h1>
       </HeaderWrapper>
       <MainList>
-        {dogsState.fetchState === REQUEST_STATE.LOADING ? (
+        {littersState.fetchState === REQUEST_STATE.LOADING ? (
           <Fragment>
             <Skeleton variant="rect" width={450} height={300} />
             <Skeleton variant="rect" width={450} height={300} />
             <Skeleton variant="rect" width={450} height={300} />
           </Fragment>
         ) : (
-          dogsState.dogsList.map((item, index) => (
+          littersState.littersList.map((item, index) => (
             <ItemWrapper>
-              <MainImageNode src={DogImage} />
+              <MainImageNode src={LitterImage} />
               <DetailWrapper>
-                <MainText>{item.name}</MainText>
-                <SubText>{`sex: ${item.sex}`}</SubText>
                 <SubText>{`Birthday: ${item.birthday}`}</SubText>
               </DetailWrapper>
             </ItemWrapper>
@@ -78,14 +72,14 @@ export const Dogs = ({ match }) => {
       </MainList>
       <hr />
       <MainList>
-        {dogsState.fetchState === REQUEST_STATE.LOADING ? (
+        {littersState.fetchState === REQUEST_STATE.LOADING ? (
           <Fragment>
             <Skeleton variant="rect" width={450} height={300} />
             <Skeleton variant="rect" width={450} height={300} />
             <Skeleton variant="rect" width={450} height={300} />
           </Fragment>
         ) : (
-          dogsState.puppiesList.map((item, index) => (
+          littersState.puppiesList.map((item, index) => (
             <ItemSubWrapper>
               <MainImageNode src={PuppyImage} />
               <DetailWrapper>

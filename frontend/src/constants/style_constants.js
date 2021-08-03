@@ -6,7 +6,7 @@ export const COLORS = {
 };
 
 export const FONT_SIZE = {
-  STAND_BODY: "24px",
+  STAND_BODY: "30px",
   BODY1: "16px",
   BODY2: "14px",
 };
