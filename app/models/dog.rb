@@ -5,4 +5,5 @@ class Dog < ApplicationRecord
 
   validates :name, :sex, presence: true
   validates :name, length: { maximum: 30 }
+
 end

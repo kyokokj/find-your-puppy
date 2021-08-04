@@ -1,6 +1,6 @@
 6.times do |a|
   breeder = Breeder.create(
-    name: "breeder_#{a}",
+    name: "BREEDER_name_#{a}",
     qualified: true,
     experience_year: a * 2,
     breed_type: "breed type_#{a}"
@@ -9,9 +9,11 @@
 
   4.times do |m|
     dog = breeder.dogs.create(
-      name: "dog_#{m}",
+      name: "DOG_name_#{m}",
       sex: m % 2,
-      birthday: Date.today - m * 100
+      birthday: Date.today - m * 100,
+      description: "description",
+      ic_chip: (a + 1) * m
     )
 
     2.times do |l|
@@ -22,7 +24,7 @@
 
       7.times do |p|
         litter.puppies.create(
-          name: "puppy_#{p}",
+          name: "PUPPY_name_#{p}",
           sex: p % 2,
           price: p * 1000,
           available: p.even?
