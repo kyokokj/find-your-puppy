@@ -5,6 +5,13 @@ export const MainLogoImage = styled.img`
   height: 40px;
 `;
 
+export const SmallIcon = styled.img`
+  height 20px;
+  width 20px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
 export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -38,6 +45,16 @@ export const ItemSubWrapper = styled.div`
   border-radius: 8px;
 `;
 
+export const Wrapper = styled.div`
+  display: flex;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${COLORS.BORDER};
+  border-image: initial;
+  cursor: pointer;
+`;
+
 export const MainImageNode = styled.img`
   width: 50%;
   height: auto;
@@ -47,6 +64,10 @@ export const MainImageNode = styled.img`
 export const DetailWrapper = styled.div`
   width: 50%;
   padding: 3px;
+`;
+
+export const TextWrapper = styled.div`
+  display: flex;
 `;
 
 export const MainText = styled.p`

@@ -9,6 +9,9 @@ module Api
           puppies: breeders.puppies
         }, status: :ok
       end
+
+      def update
+      end
     end
   end
 end

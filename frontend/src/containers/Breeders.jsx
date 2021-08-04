@@ -12,7 +12,7 @@ import {
   breedersReducer,
 } from "../reducers/breeders";
 // images
-import MainLogo from "../images/logo.png";
+import MainLogo from "../images/logo-main.png";
 import MainCoverImage from "../images/main-cover-image.png";
 import BreederImage from "../images/breeder-image.jpg";
 // constants
