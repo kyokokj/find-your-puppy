@@ -1,5 +1,4 @@
 import React, { Fragment, useReducer, useEffect, useState } from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 // reducers
 import {
@@ -23,19 +22,19 @@ import {
   SmallIcon,
   HeaderWrapper,
   MainList,
-  ItemWrapper,
-  ItemSubWrapper,
+  LargeWrapper,
+  RegularWrapper,
   Wrapper,
-  MainImageNode,
-  DetailWrapper,
+  HalfWidthImageNode,
+  HalfWidthWrapper,
   TextWrapper,
+  TitleText,
   MainText,
   SubText,
 } from "../components/StyledText";
 import { DogAddModal } from "../components/DogAddModal";
 
 const submitOrder = () => {
-  // 後ほど仮注文のAPIを実装します
   console.log("登録ボタンが押された！");
 };
 
@@ -59,6 +58,7 @@ export const Dogs = ({ match }) => {
       dispatch({
         type: dogsActionTypes.FETCH_SUCCESS,
         payload: {
+          breeder: data.breeder,
           dogs: data.dogs,
           puppies: data.puppies,
         },
@@ -73,6 +73,7 @@ export const Dogs = ({ match }) => {
         </Link>
         <h1>{dogsState.Dogs}</h1>
       </HeaderWrapper>
+      <TitleText>{`-- ${dogsState.breederName}'s dogs --`}</TitleText>
       <MainList>
         {dogsState.fetchState === REQUEST_STATE.LOADING ? (
           <Fragment>
@@ -82,7 +83,7 @@ export const Dogs = ({ match }) => {
           </Fragment>
         ) : (
           dogsState.dogsList.map((dog) => (
-            <ItemWrapper key={dog.id}>
+            <LargeWrapper key={dog.id}>
               <Wrapper
                 onClick={() =>
                   setState({
@@ -92,17 +93,17 @@ export const Dogs = ({ match }) => {
                   })
                 }
               >
-                <MainImageNode src={DogImage} />
-                <DetailWrapper>
+                <HalfWidthImageNode src={DogImage} />
+                <HalfWidthWrapper>
                   <MainText>{dog.name}</MainText>
                   <SubText>{returnSex(dog.sex)}</SubText>
                   <TextWrapper>
                     <SmallIcon src={BirthdayIcon}></SmallIcon>
                     <SubText>{dog.birthday}</SubText>
                   </TextWrapper>
-                </DetailWrapper>
+                </HalfWidthWrapper>
               </Wrapper>
-            </ItemWrapper>
+            </LargeWrapper>
           ))
         )}
       </MainList>
@@ -123,9 +124,9 @@ export const Dogs = ({ match }) => {
               selectedFoodCount: state.selectedFoodCount - 1,
             })
           }
-          // 先ほど作った関数を渡します
+          // LATER
           onClickOrder={() => submitOrder()}
-          // モーダルを閉じる時はすべてのstateを初期化する
+          // re-initialize when closing
           onClose={() =>
             setState({
               ...state,
@@ -147,14 +148,14 @@ export const Dogs = ({ match }) => {
           </Fragment>
         ) : (
           dogsState.puppiesList.map((dog) => (
-            <ItemSubWrapper>
-              <MainImageNode src={PuppyImage} />
-              <DetailWrapper>
+            <RegularWrapper>
+              <HalfWidthImageNode src={PuppyImage} />
+              <HalfWidthWrapper>
                 <MainText>{dog.name}</MainText>
                 <SubText>{returnSex(dog.sex)}</SubText>
                 <SubText>{`$${dog.price}`}</SubText>
-              </DetailWrapper>
-            </ItemSubWrapper>
+              </HalfWidthWrapper>
+            </RegularWrapper>
           ))
         )}
       </MainList>

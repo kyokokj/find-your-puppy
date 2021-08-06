@@ -6,8 +6,8 @@ export const MainLogoImage = styled.img`
 `;
 
 export const SmallIcon = styled.img`
-  height 20px;
-  width 20px;
+  width: 30px;
+  height: auto;
   margin-left: auto;
   margin-right: auto;
 `;
@@ -25,11 +25,31 @@ export const MainList = styled.div`
   margin-bottom: 50px;
 `;
 
+export const LargeWrapper = styled.div`
+  width: 340px;
+  height: 200px;
+  margin: 12px;
+  padding: 20px;
+  display: flex;
+  background: ${COLORS.BORDER};
+  border-radius: 8px;
+`;
+
+export const RegularWrapper = styled.div`
+  width: 255px;
+  height: 150px;
+  margin: 12px;
+  padding: 20px;
+  display: flex;
+  background: ${COLORS.BORDER};
+  border-radius: 8px;
+`;
+
 export const ItemWrapper = styled.div`
   width: 400px;
   height: 230px;
   margin: 3px;
-  padding: 10px;
+  padding: 3px;
   display: flex;
   background: ${COLORS.BORDER};
   border-radius: 8px;
@@ -55,29 +75,45 @@ export const Wrapper = styled.div`
   cursor: pointer;
 `;
 
+export const HalfWidthWrapper = styled.div`
+  width: 50%;
+`;
+
+export const HalfWidthImageNode = styled.img`
+  width: 50%;
+  height: auto;
+  margin: 5px;
+  border-radius: 8px;
+`;
+
 export const MainImageNode = styled.img`
   width: 50%;
   height: auto;
   border-radius: 8px;
 `;
 
-export const DetailWrapper = styled.div`
-  width: 50%;
-  padding: 3px;
-`;
-
 export const TextWrapper = styled.div`
   display: flex;
 `;
 
+export const TitleText = styled.p`
+  color: ${COLORS.TITLE_TEXT};
+  font-size: ${FONT_SIZE.TITLE};
+  text-align: center;
+`;
+
 export const MainText = styled.p`
   color: ${COLORS.MAIN};
-  font-size: ${FONT_SIZE.BODY1};
+  padding: 1px;
+  margin: 8px;
+  font-size: ${FONT_SIZE.MAIN};
   text-align: center;
 `;
 
 export const SubText = styled.p`
   color: ${COLORS.SUB_TEXT};
-  font-size: ${FONT_SIZE.BODY2};
+  padding: 1px;
+  margin: 5px;
+  font-size: ${FONT_SIZE.SUB};
   text-align: center;
 `;

@@ -2,11 +2,12 @@ module Api
   module V1
     class DogsController < ApplicationController
       def index
-        breeders = Breeder.includes(dogs: [:litters, :puppies]).find(params[:breeder_id])
+        breeder = Breeder.includes(dogs: [:litters, :puppies]).find(params[:breeder_id])
 
         render json: {
-          dogs: breeders.dogs,
-          puppies: breeders.puppies
+          breeder: breeder.name,
+          dogs: breeder.dogs.to_a,
+          puppies: breeder.puppies
         }, status: :ok
       end
 

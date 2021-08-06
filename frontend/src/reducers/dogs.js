@@ -2,6 +2,7 @@ import { REQUEST_STATE } from "../constants/constants";
 
 export const initialState = {
   fetchState: REQUEST_STATE.INITIAL,
+  breederName: "",
   dogsList: [],
   puppiesList: [],
 };
@@ -21,6 +22,7 @@ export const dogsReducer = (state, action) => {
     case dogsActionTypes.FETCH_SUCCESS:
       return {
         fetchState: REQUEST_STATE.OK,
+        breederName: action.payload.breeder,
         dogsList: action.payload.dogs,
         puppiesList: action.payload.puppies,
       };
