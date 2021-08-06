@@ -8,15 +8,28 @@ import {
 import styled from "styled-components";
 
 // components
-import { SubText } from "./StyledText";
+import {
+  MainLogoImage,
+  SmallIcon,
+  HeaderWrapper,
+  MainList,
+  ItemWrapper,
+  ItemSubWrapper,
+  Wrapper,
+  MainImageNode,
+  DetailWrapper,
+  TextWrapper,
+  MainText,
+  SubText,
+} from "../components/StyledText";
 import { AddButton, EditButton, DeleteButton } from "./Buttons";
 
 // images
 import OrderHeaderImage from "../images/dog-image.jpg";
 
-const OrderHeader = styled.img`
+const ModalHeader = styled.img`
   width: 100%;
-  height: 350px;
+  height: 400px;
 `;
 
 const DescriptionWrapper = styled.div`
@@ -38,10 +51,6 @@ const CountNum = styled.div`
   padding-top: 10px;
 `;
 
-const OrderTextWrapper = styled.div`
-  display: flex;
-`;
-
 const OrderButtonTextWrapper = styled.div`
   width: 300px;
 `;
@@ -61,11 +70,11 @@ export const DogAddModal = ({
 }) => {
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      <OrderHeader src={OrderHeaderImage} alt="order header" />
+      <ModalHeader src={OrderHeaderImage} alt="order header" />
       <DialogTitle>{dog.name}</DialogTitle>
       <DialogContent>
         <DescriptionWrapper>
-          <SubText>{dog.sex}</SubText>
+          <SubText>{dog.description}</SubText>
         </DescriptionWrapper>
       </DialogContent>
       <DialogActions>
@@ -73,7 +82,7 @@ export const DogAddModal = ({
           <CountItem>
             <DeleteButton
               onClick={() => onClickCountDown()}
-              // 数量が1以下だったら、カウントダウンさせない
+              // Enable count if ? <= 1
               isDisabled={countNumber <= 1}
             />
           </CountItem>
@@ -83,18 +92,18 @@ export const DogAddModal = ({
           <CountItem>
             <EditButton
               onClick={() => onClickCountUp()}
-              // 数量が9以上だったら、カウントアップさせない
+              // Enable count up if ? >= 9
               isDisabled={countNumber >= 9}
             />
           </CountItem>
         </CountersWrapper>
         <AddButton onClick={() => onClickOrder()}>
-          <OrderTextWrapper>
+          <TextWrapper>
             <OrderButtonTextWrapper>
-              {`${countNumber}点を注文に追加`}
+              {`add ${countNumber}`}
             </OrderButtonTextWrapper>
             <PriceWrapper>{`¥${countNumber * dog.price}`}</PriceWrapper>
-          </OrderTextWrapper>
+          </TextWrapper>
         </AddButton>
       </DialogActions>
     </Dialog>

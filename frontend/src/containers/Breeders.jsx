@@ -1,6 +1,7 @@
 import React, { Fragment, useReducer, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Moment from "moment";
 // components
 import Skeleton from "@material-ui/lab/Skeleton";
 // apis
@@ -14,18 +15,20 @@ import {
 // images
 import MainLogo from "../images/logo-main.png";
 import MainCoverImage from "../images/main-cover-image.png";
-import BreederImage from "../images/breeder-image.jpg";
+import BreederImage from "../images/breeder-image.png";
+import Ribbon from "../images/ribbon.png";
 // constants
 import { REQUEST_STATE } from "../constants/constants";
 import {
   MainLogoImage,
   HeaderWrapper,
   MainList,
-  ItemWrapper,
-  MainImageNode,
-  DetailWrapper,
+  RegularWrapper,
+  HalfWidthImageNode,
+  HalfWidthWrapper,
   MainText,
   SubText,
+  SmallIcon,
 } from "../components/StyledText";
 
 const MainCoverImageWrapper = styled.div`
@@ -72,14 +75,17 @@ export const Breeders = () => {
               key={index}
               style={{ textDecoration: "none" }}
             >
-              <ItemWrapper>
-                <MainImageNode src={BreederImage} />
-                <DetailWrapper>
+              <RegularWrapper>
+                <HalfWidthImageNode src={BreederImage} />
+                <HalfWidthWrapper>
                   <MainText>{item.name}</MainText>
-                  <SubText>{`${item.experience_year}years experience`}</SubText>
-                  <SubText>{`breed type is ${item.breed_type}`}</SubText>
-                </DetailWrapper>
-              </ItemWrapper>
+                  <SubText>{`${Moment(item.start_from).format(
+                    "MMM YYYY"
+                  )} -`}</SubText>
+                  <SubText>{item.breed_type}</SubText>
+                  {item.qualified && <SmallIcon src={Ribbon}></SmallIcon>}
+                </HalfWidthWrapper>
+              </RegularWrapper>
             </Link>
           ))
         )}
